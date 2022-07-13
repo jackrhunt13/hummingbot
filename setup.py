@@ -114,7 +114,7 @@ def main():
             "optimize.unpack_method_calls": False,
         }
     else:
-        compiler_directives = {}
+        compiler_directives = {'language_level': 3}
 
     if is_posix:
         cython_kwargs["nthreads"] = cpu_count
