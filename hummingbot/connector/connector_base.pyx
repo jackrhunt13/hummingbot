@@ -1,3 +1,4 @@
+# distutils: language=c++
 import asyncio
 import time
 from decimal import Decimal
