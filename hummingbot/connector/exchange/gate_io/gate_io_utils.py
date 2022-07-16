@@ -5,6 +5,9 @@ from hummingbot.client.config.config_var import ConfigVar
 from hummingbot.connector.exchange.gate_io import gate_io_constants as CONSTANTS
 from hummingbot.core.data_type.trade_fee import TradeFeeSchema
 
+
+import time
+
 CENTRALIZED = True
 EXAMPLE_PAIR = "BTC-USDT"
 DEFAULT_FEES = TradeFeeSchema(
@@ -26,3 +29,22 @@ KEYS = {
                   is_secure=True,
                   is_connect_key=True),
 }
+
+def seconds():
+    return int(time.time())
+
+
+def milliseconds():
+    return int(time.time() * 1000)
+
+
+def microseconds():
+    return int(time.time() * 1000000)
+
+
+def convert_from_exchange_trading_pair(exchange_trading_pair: str) -> str:
+    return exchange_trading_pair.replace("_", "-")
+
+
+def convert_to_exchange_trading_pair(hb_trading_pair: str) -> str:
+    return hb_trading_pair.replace("-", "_")
