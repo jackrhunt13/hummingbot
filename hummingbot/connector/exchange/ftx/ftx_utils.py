@@ -24,12 +24,8 @@ def split_trading_pair(trading_pair: str) -> Optional[Tuple[str, str]]:
         return None
 
 
-def convert_from_exchange_trading_pair(exchange_trading_pair: str) -> Optional[str]:
-    if split_trading_pair(exchange_trading_pair) is None:
-        return None
-    # Blocktane does not split BASEQUOTE (fthusd)
-    base_asset, quote_asset = split_trading_pair(exchange_trading_pair)
-    return f"{base_asset}-{quote_asset}".upper()
+def convert_from_exchange_trading_pair(exchange_trading_pair: str) -> str:
+    return exchange_trading_pair.replace("/", "-")
 
 
 def convert_to_exchange_trading_pair(hb_trading_pair: str) -> str:
