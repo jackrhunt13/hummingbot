@@ -1,6 +1,7 @@
 from decimal import Decimal
 from typing import Any, Dict
 
+import time
 from hummingbot.client.config.config_methods import using_exchange
 from hummingbot.client.config.config_var import ConfigVar
 from hummingbot.core.data_type.trade_fee import TradeFeeSchema
@@ -57,3 +58,19 @@ OTHER_DOMAINS_KEYS = {"binance_us": {
                   is_secure=True,
                   is_connect_key=True),
 }}
+
+
+def seconds():
+    return int(time.time())
+
+
+def milliseconds():
+    return int(time.time() * 1000)
+
+
+def microseconds():
+    return int(time.time() * 1000000)
+
+
+def convert_to_exchange_trading_pair(hb_trading_pair: str) -> str:
+    return hb_trading_pair.replace("-", "")

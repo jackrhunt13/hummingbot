@@ -30,6 +30,7 @@ KEYS = {
                   is_connect_key=True),
 }
 
+
 def seconds():
     return int(time.time())
 
