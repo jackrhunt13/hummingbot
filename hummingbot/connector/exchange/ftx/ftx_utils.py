@@ -29,7 +29,10 @@ def convert_from_exchange_trading_pair(exchange_trading_pair: str) -> str:
 
 
 def convert_to_exchange_trading_pair(hb_trading_pair: str) -> str:
-    return hb_trading_pair.replace("-", "/")
+    if 'PERP' in hb_trading_pair:
+        return hb_trading_pair
+    else:
+        return hb_trading_pair.replace("-", "/")
 
 
 KEYS = {
