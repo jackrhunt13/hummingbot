@@ -15,6 +15,10 @@ DEFAULT_FEES = TradeFeeSchema(
 )
 
 
+def convert_to_exchange_trading_pair(hb_trading_pair: str) -> str:
+    return hb_trading_pair.replace("-", "")
+
+
 def is_exchange_information_valid(exchange_info: Dict[str, Any]) -> bool:
     """
     Verifies if a trading pair is enabled to operate with based on its exchange information
