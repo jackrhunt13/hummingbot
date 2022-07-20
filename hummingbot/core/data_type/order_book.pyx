@@ -51,7 +51,8 @@ cdef class OrderBook(PubSub):
         super().__init__()
         self._snapshot_uid = 0
         self._last_diff_uid = 0
-        self._best_bid = self._best_ask = float("NaN")
+        self._best_bid = float("NaN")
+        self._best_ask = float("NaN")
         self._last_trade_price = float("NaN")
         self._last_applied_trade = -1000.0
         self._last_trade_price_rest_updated = -1000
