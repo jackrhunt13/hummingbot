@@ -47,7 +47,7 @@ cdef class OrderBook(PubSub):
             ob_logger = logging.getLogger(__name__)
         return ob_logger
 
-    def __init__(self, dex=False):
+    def __init__(self, exchange_name: str, coin_name: str,  dex=False):
         super().__init__()
         self._snapshot_uid = 1
         self._last_diff_uid = 1
