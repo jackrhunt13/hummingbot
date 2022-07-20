@@ -57,6 +57,8 @@ cdef class OrderBook(PubSub):
         self._last_applied_trade = -1000.0
         self._last_trade_price_rest_updated = -1000
         self._dex = dex
+        self._exchange_name = exchange_name
+        self._coin_name = coin_name
 
     cdef c_apply_diffs(self, vector[OrderBookEntry] bids, vector[OrderBookEntry] asks, int64_t update_id):
         cdef:
@@ -178,6 +180,14 @@ cdef class OrderBook(PubSub):
     @property
     def best_ask(self) -> float:
         return self._best_ask
+
+    @property
+    def exchange_name(self) -> str:
+        return self._exchange_name
+
+    @property
+    def coin_name(self) -> str:
+        return self._coin_name
 
     @property
     def snapshot(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
