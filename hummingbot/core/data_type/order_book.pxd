@@ -20,6 +20,8 @@ cdef class OrderBook(PubSub):
     cdef double _last_applied_trade
     cdef double _last_trade_price_rest_updated
     cdef bint _dex
+    cdef str _exchange_name
+    cdef str _coin_name
 
     cdef c_apply_diffs(self, vector[OrderBookEntry] bids, vector[OrderBookEntry] asks, int64_t update_id)
     cdef c_apply_snapshot(self, vector[OrderBookEntry] bids, vector[OrderBookEntry] asks, int64_t update_id)
