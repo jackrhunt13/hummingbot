@@ -47,12 +47,13 @@ cdef class OrderBook(PubSub):
             ob_logger = logging.getLogger(__name__)
         return ob_logger
 
-    def __init__(self, exchange_name: str, coin_name: str, dex=False):
+    def __init__(self, exchange_name: str = '', coin_name: str = '', dex=False):
         super().__init__()
         self._snapshot_uid = 0
         self._last_diff_uid = 0
         self._best_bid = float("NaN")
         self._best_ask = float("NaN")
+        print('test')
         self._last_trade_price = float("NaN")
         self._last_applied_trade = -1000.0
         self._last_trade_price_rest_updated = -1000
