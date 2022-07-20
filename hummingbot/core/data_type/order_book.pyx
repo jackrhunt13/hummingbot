@@ -47,7 +47,7 @@ cdef class OrderBook(PubSub):
             ob_logger = logging.getLogger(__name__)
         return ob_logger
 
-    def __init__(self, exchange_name: str, coin_name: str,  dex=False):
+    def __init__(self, exchange_name: str, trading_pair: str,  dex=False):
         super().__init__()
         self._snapshot_uid = 1
         self._last_diff_uid = 1
@@ -58,7 +58,7 @@ cdef class OrderBook(PubSub):
         self._last_trade_price_rest_updated = -1000
         self._dex = dex
         self._exchange_name = exchange_name
-        self._coin_name = coin_name
+        self._trading_pair = trading_pair
 
     cdef c_apply_diffs(self, vector[OrderBookEntry] bids, vector[OrderBookEntry] asks, int64_t update_id):
         cdef:
