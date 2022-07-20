@@ -172,6 +172,14 @@ cdef class OrderBook(PubSub):
         return self._last_diff_uid
 
     @property
+    def best_bid(self) -> float:
+        return self._best_bid
+
+    @property
+    def best_ask(self) -> float:
+        return self._best_ask
+
+    @property
     def snapshot(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
         bids_rows = list(self.bid_entries())
         asks_rows = list(self.ask_entries())
