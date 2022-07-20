@@ -49,8 +49,8 @@ cdef class OrderBook(PubSub):
 
     def __init__(self, dex=False):
         super().__init__()
-        self._snapshot_uid = 0
-        self._last_diff_uid = 0
+        self._snapshot_uid = 1
+        self._last_diff_uid = 1
         self._best_bid = float("NaN")
         self._best_ask = float("NaN")
         self._last_trade_price = float("NaN")
