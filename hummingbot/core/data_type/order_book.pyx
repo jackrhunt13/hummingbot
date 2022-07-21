@@ -186,8 +186,8 @@ cdef class OrderBook(PubSub):
         return self._exchange_name
 
     @property
-    def coin_name(self) -> str:
-        return self._coin_name
+    def trading_pair(self) -> str:
+        return self._trading_pair
 
     @property
     def snapshot(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
