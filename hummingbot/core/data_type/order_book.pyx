@@ -207,19 +207,19 @@ cdef class OrderBook(PubSub):
         :return: A pandas data frame object
         """
         cdef:
-            list columns = ["Exchange", "Trading_Pair", "Type", "Price",  "Amount"]
+            list columns = ["Exchange", "Trading_Pair", "Type", "Price",  "Amount", 'Update_Id']
             list data = []
             double price, quantity
 
         for row in self.bid_entries():
             price = float(row.price)
             quantity = float(row.amount)
-            data.append([self.exchange_name, self.trading_pair, 'Bid', price, quantity])
+            data.append([self.exchange_name, self.trading_pair, 'Bid', price, quantity, row.update_id])
 
         for row in self.ask_entries():
             price = float(row.price)
             quantity = float(row.amount)
-            data.append([self.exchange_name, self.trading_pair, 'Ask', price, quantity])
+            data.append([self.exchange_name, self.trading_pair, 'Ask', price, quantity, row.update_id])
 
         return pd.DataFrame(data=data, columns=columns)
 
