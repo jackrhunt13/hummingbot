@@ -197,6 +197,32 @@ cdef class OrderBook(PubSub):
         asks_df = pd.DataFrame(data=asks_rows, columns=OrderBookRow._fields, dtype="float64")
         return bids_df, asks_df
 
+    def to_pandas_for_saving(self) -> pd.DataFrame:
+        """
+        Creates a dataframe for displaying current active orders
+        :param limit_orders: A list of current active LimitOrder from a single market
+        :param mid_price: The mid price (between best bid and best ask) of the market
+        :param hanging_ids: A list of hanging order ids if applicable
+        :param end_time_order_age: The end time for order age calculation, if unspecified the current time is used.
+        :return: A pandas data frame object
+        """
+        cdef:
+            list columns = ["Exchange", "Trading_Pair", "Type", "Price",  "Amount"]
+            list data = []
+            double price, quantity
+
+        for row in self.bid_entries():
+            price = float(row.price)
+            quantity = float(row.amount)
+            data.append([self.exchange_name, self.trading_pair, 'Bid', price, quantity])
+
+        for row in self.ask_entries():
+            price = float(row.price)
+            quantity = float(row.amount)
+            data.append([self.exchange_name, self.trading_pair, 'Ask', price, quantity])
+
+        return pd.DataFrame(data=data, columns=columns)
+
     def apply_diffs(self, bids: List[OrderBookRow], asks: List[OrderBookRow], update_id: int):
         cdef:
             vector[OrderBookEntry] cpp_bids
